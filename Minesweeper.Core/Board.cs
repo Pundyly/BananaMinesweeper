@@ -22,19 +22,15 @@ public class Board
         int x = Map.GetLength(0);
         int y = Map.GetLength(1);
         Random rnd = new Random();
-        int q = 0;
         for (int i = 0; i < MinesQuantity; i++)
         {
-            if (q < 100)
-            {
-                int xb = rnd.Next(x);
-                int yb = rnd.Next(y);
-                if (xb >= cx - 1 && xb <= cx + 1 && yb >= cy - 1 && yb <= cy + 1)
-                    continue;
-                    
-                Map[xb, yb].IsMined = true;
-                Bombs++;
-            }
+            int xb = rnd.Next(x);
+            int yb = rnd.Next(y);
+            if (xb >= cx - 1 && xb <= cx + 1 && yb >= cy - 1 && yb <= cy + 1)
+                continue;
+
+            Map[xb, yb].IsMined = true;
+            Bombs++;
         }
         for (int i = 0; i < x; i++)
         {
