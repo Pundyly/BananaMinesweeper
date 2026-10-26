@@ -5,7 +5,7 @@ namespace Minesweeper.Core;
 public class Board
 {
     public Tile[,] Map { get; set; } = null!;
-    public int Bombs { get; set; }
+    public int Mines { get; set; }
 
     private bool IsFirstOpen;
     private int MinesQuantity;
@@ -30,7 +30,7 @@ public class Board
                 continue;
 
             Map[xb, yb].IsMined = true;
-            Bombs++;
+            Mines++;
         }
         for (int i = 0; i < x; i++)
         {
@@ -94,5 +94,9 @@ public class Board
                 OpenTile(x + dx, y + dy);
     }
 
-    public bool IsAllMinesFlagged() => !Map.Cast<Tile>().Any(x => x.IsMined && !x.IsFlagged);
+    public bool IsAllMinesFlagged()
+    {
+        if ( Mines <= 0) return false;
+        return Map.Cast<Tile>().Where(x => x.IsMined).All(x => x.IsFlagged);
+    } 
 }

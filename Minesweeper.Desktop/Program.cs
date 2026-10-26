@@ -194,16 +194,6 @@ void DrawMine(int px, int py, bool exploded)
     Raylib.DrawCircle(cx - 2, cy - 2, 2, Color.White);
 }
 
-bool CheckWin()
-{
-    int opened = 0;
-    for (int x = 0; x < w; x++)
-        for (int y = 0; y < h; y++)
-            if (IsOpen(board!, x, y)) opened++;
-    if (opened == w * h - mines) return true;
-    return board!.IsAllMinesFlagged() && flagsCount == mines;
-}
-
 void HandleGameInput()
 {
     if (Raylib.IsKeyPressed(KeyboardKey.R)) { StartGame(w, h, mines); return; }
@@ -266,7 +256,7 @@ void HandleGameInput()
         if (!started) { started = true; startTime = Raylib.GetTime(); }
     }
 
-    if (!lost && CheckWin())
+    if (!lost && board!.IsAllMinesFlagged())
     {
         won = true;
         finalTime = Raylib.GetTime() - startTime;

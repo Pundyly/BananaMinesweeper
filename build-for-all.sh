@@ -6,7 +6,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT="$ROOT/Minesweeper.Desktop"
 OUT="$ROOT/publish"
 NAME="BananaMinesweeper"
-RIDS=(win-x64 linux-x64 osx-x64 osx-arm64)
+RIDS=(win-x64 win-arm64 linux-x64 linux-arm64 osx-x64 osx-arm64 )
 
 # Check required tools
 command -v dotnet >/dev/null 2>&1 || { echo "Error: dotnet is not installed."; exit 1; }
